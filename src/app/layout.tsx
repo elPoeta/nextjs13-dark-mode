@@ -1,5 +1,8 @@
+import Providers from '@/components/Providers'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
+import ToggleTheme from '@/components/ToggleTheme'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,8 +17,27 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+      <Providers>
+          <header className='py-6'>
+            <nav className='container flex items-center justify-between'>
+              <ul className='flex gap-6'>
+                <li>
+                  <Link href='/'>Home</Link>
+                </li>
+              </ul>
+
+             <ToggleTheme/>              
+            </nav>
+          </header>
+
+          <main>{children}</main>
+
+          <footer></footer>
+        </Providers>
+
+      </body>
     </html>
   )
 }
